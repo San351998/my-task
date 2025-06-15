@@ -52,7 +52,7 @@ export default function OrderStatus() {
       </div>
 
       <div className="flex flex-col md:flex-row sm:gap-6">
-        <div className="w-full md:w-[60%] grid grid-cols-2 gap-0 rounded-xl overflow-hidden flex-1">
+        <div className="w-full md:w-[55%] grid grid-cols-2 gap-0 rounded-xl overflow-hidden flex-1">
           <StatusBox icon="/images/tabs/dashboard/order-status/all.svg" label="All" value={total} index={0} />
           {data.map((item, index) => (
             <StatusBox key={item.name} icon={item.icon} label={item.name} value={item.value} index={index + 1} />
@@ -60,7 +60,7 @@ export default function OrderStatus() {
         </div>
 
         {/* Pie Chart */}
-        <div className="w-full md:w-[40%] relative h-[255px] sm:h-auto">
+        <div className="w-full md:w-[45%] relative h-[255px] sm:h-auto">
           <ResponsiveContainer>
             <PieChart>
               <Pie
