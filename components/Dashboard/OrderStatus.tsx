@@ -37,13 +37,11 @@ export default function OrderStatus() {
   const [startDate, setStartDate] = useState<Date | null>(new Date())
 
   return (
-    <div className="mx-4 bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
-      {/* Header */}
+    <div className="bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
       <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#e7e9ec]">
         <h2 className="text-lg font-semibold text-[#0E253C]">Order Status</h2>
 
         <div className="flex gap-4 w-full md:w-auto flex-col md:flex-row">
-          {/* Dropdown */}
           <div>
             <div className="relative w-[146px]">
               <select
@@ -63,7 +61,6 @@ export default function OrderStatus() {
             </div>
           </div>
 
-          {/* Date Picker */}
           <div>
             <div className="bg-white flex items-center border border-gray-300 rounded-[12px] px-1 py-[8px] cursor-pointer shadow-sm text-sm text-[#0E253C] w-[93px]">
               <DatePicker
@@ -72,16 +69,19 @@ export default function OrderStatus() {
                 className="w-full outline-none text-center font-semibold"
                 dateFormat="yyyy"
               />
-              <CalendarDaysIcon className="w-12 h-auto max-w-12 text-gray-500 mr-2 text-[#0E253C]" />
+              <Image
+                src={`/images/sidebar/calendar.svg`}
+                alt="calander"
+                width={18}
+                height={18}
+                className="w-8 h-auto max-w-8 text-gray-500 mr-2 text-[#0E253C]" />
 
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex flex-col md:flex-row gap-6">
-        {/* Status Boxes */}
         <div className="grid grid-cols-2 gap-0 rounded-xl overflow-hidden flex-1">
           <StatusBox icon="/images/tabs/dashboard/order-status/all.svg" label="All" value={total} index={0} />
           {data.map((item, index) => (
@@ -90,7 +90,7 @@ export default function OrderStatus() {
         </div>
 
         {/* Pie Chart */}
-        <div className="w-full md:w-1/2 h-64 relative">
+        <div className="w-full md:w-1/2 relative">
           <ResponsiveContainer>
             <PieChart>
               <Pie
@@ -115,10 +115,10 @@ export default function OrderStatus() {
                       fill="white"
                       textAnchor="middle"
                       dominantBaseline="central"
-                      fontSize={15}
-                      fontWeight={600}
+                      fontSize={16}
+                      fontWeight={500}
                     >
-                      {value}
+                      {value}%
                     </text>
                   )
                 }}
@@ -132,7 +132,7 @@ export default function OrderStatus() {
             </PieChart>
           </ResponsiveContainer>
 
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-2xl font-bold">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] font-bold">
             {total}
           </div>
         </div>
@@ -152,19 +152,19 @@ const StatusBox = ({
   value: number
   index: number
 }) => {
-  const isRightColumn = (index + 1) % 2 === 0 // 2 items per row
+  const isRightColumn = (index + 1) % 2 === 0
   return (
     <div
       className={`flex items-center space-x-3 px-6 py-10 border-b border-r border-gray-200
         ${isRightColumn ? 'border-r-0' : ''}
       `}
     >
-      <div className="w-6 h-6 relative">
+      <div className="max-w-6 w-6 max-h-6 h-6 relative">
         <Image src={icon} alt={label} width={24} height={24} />
       </div>
       <div>
         <div className="text-sm text-gray-500">{label}</div>
-        <div className="text-lg font-semibold">{value}</div>
+        <div className="text-[22px] font-semibold">{value}</div>
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <Breadcrumb />
             <div className="flex bg-[#f6f8f9] h-[calc(100vh-129px)]">
                 <Sidebar />
-                <main className="flex-1 px-4">{children}</main>
+                <main className="flex-1 pl-4">{children}</main>
             </div>
         </>
     );

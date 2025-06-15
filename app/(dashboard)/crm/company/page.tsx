@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import DashboardCardsSlider from "@/components/Dashboard/DashboardCardsSlider";
-import OrderStatus from "@/components/OrderStatus/OrderStatus";
+import OrderStatus from "@/components/Dashboard/OrderStatus";
+import RecentActivities from "@/components/Dashboard/RecentActivities";
 
 export default function CompanyPage() {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -32,9 +33,9 @@ export default function CompanyPage() {
         {activeTab === "Dashboard" && (
           <>
             <DashboardCardsSlider />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="mx-4  grid grid-cols-2 gap-4">
               <OrderStatus />
-              <p>asdsad</p>
+              <RecentActivities/>
             </div>
           </>
         )}
