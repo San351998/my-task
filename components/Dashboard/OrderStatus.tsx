@@ -12,7 +12,8 @@ import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { CalendarDaysIcon } from '@heroicons/react/24/outline'
+import DropdownSelect from '../Common/DropdownSelect'
+import YearPicker from '../Common/DatePicker'
 
 const COLORS = ['#F87171', '#FBBF24', '#60A5FA', '#34D399', '#A78BFA']
 
@@ -42,41 +43,13 @@ export default function OrderStatus() {
         <h2 className="text-lg font-semibold text-[#0E253C]">Order Status</h2>
 
         <div className="flex gap-4 w-full md:w-auto flex-col md:flex-row">
+          <DropdownSelect
+            options={contactOwners}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <div>
-            <div className="relative w-[146px]">
-              <select
-                value={selected}
-                onChange={(e) => setSelected(e.target.value)}
-                className="bg-white w-full appearance-none border border-gray-300 rounded-[12px] shadow-sm px-3 py-[8px] text-sm text-[#0E253C] focus:outline-none cursor-pointer font-semibold"
-              >
-                {contactOwners.map((owner, index) => (
-                  <option key={index} value={owner}>
-                    {owner}
-                  </option>
-                ))}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center font-semibold">
-                <ChevronDownIcon className="w-4 h-4 text-[#0E253C]" />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div className="bg-white flex items-center border border-gray-300 rounded-[12px] px-1 py-[8px] cursor-pointer shadow-sm text-sm text-[#0E253C] w-[93px]">
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                className="w-full outline-none text-center font-semibold"
-                dateFormat="yyyy"
-              />
-              <Image
-                src={`/images/sidebar/calendar.svg`}
-                alt="calander"
-                width={18}
-                height={18}
-                className="w-8 h-auto max-w-8 text-gray-500 mr-2 text-[#0E253C]" />
-
-            </div>
+            <YearPicker selectedDate={startDate} onChange={setStartDate} />
           </div>
         </div>
       </div>

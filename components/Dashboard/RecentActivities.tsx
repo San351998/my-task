@@ -136,7 +136,6 @@ export default function RecentActivities() {
         <div className="full bg-[#f6f8f9] rounded-[12px] shadow-sm h-full border border-[#e7e9ec]">
             <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#e7e9ec]">
                 <h2 className="text-lg font-semibold text-[#0E253C]">Recent Activities</h2>
-                {/* Toggle Tabs */}
                 <div className="bg-gray-100 rounded-[12px] w-fit border border-[#e7e9ec]">
                     <button
                         className={`px-4 py-2 rounded-[12px] font-medium cursor-pointer ${activeTab === 'message' ? 'bg-white shadow text-[#0E253C]' : 'text-gray-500'
@@ -154,7 +153,6 @@ export default function RecentActivities() {
                     </button>
                 </div>
             </div>
-            {/* Tab Content */}
             <div className="mt-4 mx-5">
                 {activeTab === 'message' ? (
                     <MessageContent />

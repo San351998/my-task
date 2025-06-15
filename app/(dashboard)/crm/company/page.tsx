@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import DashboardCardsSlider from "@/components/Dashboard/DashboardCardsSlider";
 import OrderStatus from "@/components/Dashboard/OrderStatus";
 import RecentActivities from "@/components/Dashboard/RecentActivities";
+import RecentOrders from "@/components/Dashboard/RecentOrders";
+import Revenue from "@/components/Dashboard/Revenue";
 
 export default function CompanyPage() {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -37,6 +39,8 @@ export default function CompanyPage() {
               <OrderStatus />
               <RecentActivities/>
             </div>
+            <RecentOrders/>
+            <Revenue/>
           </>
         )}
 
