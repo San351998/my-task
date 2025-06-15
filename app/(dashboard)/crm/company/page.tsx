@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 import DashboardCardsSlider from "@/components/Dashboard/DashboardCardsSlider";
+import OrderStatus from "@/components/OrderStatus/OrderStatus";
 
 export default function CompanyPage() {
   const [activeTab, setActiveTab] = useState("Dashboard");
 
   const tabs = ["Dashboard", "Orders", "Address", "Notes", "Tasks", "Contacts", "Credit History"];
-  
+
   return (
     <div className="">
       {/* Tabs */}
@@ -29,7 +30,13 @@ export default function CompanyPage() {
       {/* Tab Content */}
       <div className="bg-white pt-6 border border-[#e7e9ec] rounded-b-[12px]">
         {activeTab === "Dashboard" && (
-          <DashboardCardsSlider />
+          <>
+            <DashboardCardsSlider />
+            <div className="grid grid-cols-2 gap-4">
+              <OrderStatus />
+              <p>asdsad</p>
+            </div>
+          </>
         )}
 
         {activeTab !== "Dashboard" && (

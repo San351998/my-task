@@ -2,8 +2,6 @@
 
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 const sliderItems = [
@@ -70,8 +68,8 @@ export default function DashboardCardsSlider() {
   };
 
   return (
-    <div className="bg-white py-6 px-2">
-      {/* <Slider {...sliderSettings}> */}
+    <div className="bg-white max-w-6xl py-6 px-2">
+      <Slider {...sliderSettings}>
       {sliderItems.map((item, index) => (
         <div key={index} className="px-2 w-[20%] ">
           <div className="bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
@@ -111,7 +109,7 @@ export default function DashboardCardsSlider() {
           </div>
         </div>
       ))}
-      {/* </Slider> */}
+      </Slider>
     </div>
   );
 }
