@@ -17,19 +17,19 @@ const YearPicker: FC<YearPickerProps> = ({
   widthClass = 'w-[93px]',
 }) => {
   return (
-    <div className={`bg-white flex items-center border border-gray-300 rounded-[12px] px-1 py-[8px] cursor-pointer shadow-sm text-sm text-[#0E253C] ${widthClass}`}>
+    <div className={`bg-[var(--background-section)] flex items-center border border-[var(--border-color)] rounded-[12px] px-1 py-[8px] cursor-pointer shadow-sm text-sm text-[var(--text-color)] ${widthClass}`}>
       <DatePicker
         selected={selectedDate}
         onChange={onChange}
         dateFormat="yyyy"
-        className="w-full outline-none text-center font-semibold bg-white"
+        className="w-full outline-none text-center font-semibold bg-[var(--background-section)]"
       />
       <Image
         src="/images/sidebar/calendar.svg"
         alt="calendar"
         width={18}
         height={18}
-        className="w-8 h-auto max-w-8 text-gray-500 mr-2 text-[#0E253C]"
+        className="w-8 h-auto max-w-8 text-gray-500 mr-2 text-[var(--text-color)]"
       />
     </div>
   );

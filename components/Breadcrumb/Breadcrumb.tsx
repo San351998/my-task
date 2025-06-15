@@ -3,8 +3,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Breadcrumb() {
-  const pathname = usePathname(); 
-  const pathSegments = pathname.split("/").filter(Boolean); 
+  const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter(Boolean);
 
   const format = (str: string) =>
     str
@@ -13,7 +13,7 @@ export default function Breadcrumb() {
       .join(" ");
 
   return (
-    <div className="w-full bg-white text-md text-[#0E253C] px-4 py-5 border-b border-[#e7e9ec]">
+    <div className="w-full bg-[var(--background-section)] text-md text-[var(--text-color)] px-4 py-5 border-b border-[var(--border-color)] transition-colors duration-300">
       {pathSegments.map((segment, index) => {
         const href = "/" + pathSegments.slice(0, index + 1).join("/");
         const isLast = index === pathSegments.length - 1;
@@ -21,13 +21,18 @@ export default function Breadcrumb() {
           <span key={href}>
             {!isLast ? (
               <>
-                <Link href={href} className="text-[#0E253C] opacity-[85%] hover:underline">
+                <Link
+                  href={href}
+                  className="text-[var(--text-color)] opacity-[85%] hover:underline"
+                >
                   {format(segment)}
                 </Link>
                 {" / "}
               </>
             ) : (
-              <span className="font-semibold text-[#0E253C]">{format(segment)}</span>
+              <span className="font-semibold text-[var(--text-color)]">
+                {format(segment)}
+              </span>
             )}
           </span>
         );

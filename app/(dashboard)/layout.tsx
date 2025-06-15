@@ -10,11 +10,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             {/* <Container> */}
             <Topbar />
             <Breadcrumb />
-            <div className="flex-col xl:flex-row flex bg-[#f6f8f9] h-full lg:h-[calc(100vh-129px)] w-full">
-                <div className="">
+            <div className="flex-col xl:flex-row flex bg-[var(--background-main)] h-full lg:h-[calc(100vh-129px)] w-full transition-colors duration-300">
+                <div>
                     <Sidebar />
                 </div>
-                <main className="flex-1 overflow-y-auto px-4 lg:pr-0 mb-8 max-w-full">{children}</main>
+                <main className="flex-1 overflow-y-auto px-4 lg:pr-0 mb-8 max-w-full text-[var(--text-color)] transition-colors duration-300">
+                    {children}
+                </main>
             </div>
             {/* </Container> */}
         </>

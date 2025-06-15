@@ -21,8 +21,8 @@ const DropdownSelect: FC<DropdownSelectProps> = ({
       <select
         value={selected}
         onChange={(e) => setSelected(e.target.value)}
-        className="bg-white w-full appearance-none border border-gray-300 rounded-[12px] shadow-sm px-3 py-[8px] text-sm text-[#0E253C] focus:outline-none cursor-pointer font-semibold"
-      >
+        className="bg-[var(--background-section)] w-full appearance-none border border-[var(--border-color)] rounded-[12px] shadow-sm px-3 py-[8px] text-sm text-[var(--text-color)] focus:outline-none cursor-pointer font-semibold"
+      >  border-color
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}

@@ -9,9 +9,6 @@ import {
 } from 'recharts'
 import Image from 'next/image'
 import { useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import DropdownSelect from '../Common/DropdownSelect'
 import YearPicker from '../Common/DatePicker'
 
@@ -38,9 +35,9 @@ export default function OrderStatus() {
   const [startDate, setStartDate] = useState<Date | null>(new Date())
 
   return (
-    <div className="bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
-      <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#e7e9ec]">
-        <h2 className="text-lg font-semibold text-[#0E253C]">Order Status</h2>
+    <div className="bg-[var(--background-section)] rounded-2xl shadow-sm h-full border border-[var(--border-color)] mt-1 sm:mt-0">
+      <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[var(--border-color)]">
+        <h2 className="text-lg font-semibold text-[var(--text-color)]">Order Status</h2>
 
         <div className="flex gap-4 w-full md:w-auto flex-row">
           <DropdownSelect
@@ -63,7 +60,7 @@ export default function OrderStatus() {
         </div>
 
         {/* Pie Chart */}
-        <div className="w-full md:w-[40%] relative  h-[255px] sm:h-auto">
+        <div className="w-full md:w-[40%] relative h-[255px] sm:h-auto">
           <ResponsiveContainer>
             <PieChart>
               <Pie
@@ -105,7 +102,7 @@ export default function OrderStatus() {
             </PieChart>
           </ResponsiveContainer>
 
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] font-bold">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[32px] font-bold text-[var(--text-color)]">
             {total}
           </div>
         </div>
@@ -131,7 +128,7 @@ const StatusBox = ({
   return (
     <div
       className={`flex px-4 sm:px-6 xl:px-4 2xl:px-6 py-4 sm:py-10 
-        border-gray-200 
+        border-[var(--border-color)] 
         ${!noBorder ? 'border-b' : ''} 
         ${!isRightColumn ? 'border-r' : ''}
       `}
@@ -143,8 +140,8 @@ const StatusBox = ({
       </div>
 
       <div className="w-3/5">
-        <div className="text-sm text-gray-500">{label}</div>
-        <div className="text-[22px] font-semibold">{value}</div>
+        <div className="text-sm text-[var(--text-color)] opacity-70">{label}</div>
+        <div className="text-[22px] font-semibold text-[var(--text-color)]">{value}</div>
       </div>
     </div>
   );

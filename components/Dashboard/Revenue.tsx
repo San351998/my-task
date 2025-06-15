@@ -50,30 +50,25 @@ export default function Revenue() {
     useEffect(() => {
         const updateBarSize = () => {
             const width = window.innerWidth;
-            if (width < 640) {
-                setBarSize(30);
-            } else {
-                setBarSize(60); 
-            }
+            setBarSize(width < 640 ? 30 : 60);
         };
 
-        updateBarSize(); 
+        updateBarSize();
         window.addEventListener('resize', updateBarSize);
-
         return () => window.removeEventListener('resize', updateBarSize);
     }, []);
 
     return (
-        <div className="bg-[#f6f8f9] mx-4 mt-6 border border-[#e7e9ec] rounded-[12px] shadow-sm text-[#0E253C] mb-4">
-            <div className="p-4 flex flex-col md:flex-row gap-3 justify-between items-center border-b border-[#e7e9ec]">
-                <div className="bg-gray-100 rounded-[12px] w-full md:w-fit border border-[#e7e9ec] flex overflow-x-auto">
+        <div className="bg-[var(--background-section)] mx-4 mt-6 border border-[var(--border-color)] rounded-[12px] shadow-sm text-[var(--text-color)] mb-4">
+            <div className="p-4 flex flex-col md:flex-row gap-3 justify-between items-center border-b border-[var(--border-color)]">
+                <div className="bg-[var(--input-bg)] rounded-[12px] w-full md:w-fit border border-[var(--border-color)] flex justify-center overflow-x-auto">
                     {tabs.map((tab) => (
                         <button
                             key={tab}
                             className={`px-4 py-2 whitespace-nowrap rounded-[12px] font-medium cursor-pointer ${
                                 activeTab === tab
-                                    ? 'bg-white shadow text-[#0E253C]'
-                                    : 'text-gray-500'
+                                    ? 'bg-[var(--card-bg)] shadow text-[var(--text-color)]'
+                                    : 'text-[var(--text-muted)]'
                             }`}
                             onClick={() => setActiveTab(tab)}
                         >
@@ -92,11 +87,13 @@ export default function Revenue() {
                 </div>
             </div>
 
-            {activeTab === 'Revenue' && (
+            {activeTab === 'Revenue' ? (
                 <div className="px-4 sm:px-6 pb-6">
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 gap-2">
-                        <h2 className="text-base sm:text-lg font-semibold text-[#0E253C]">Revenue</h2>
-                        <p className="text-sm sm:text-lg text-[#0E253C]">
+                        <h2 className="text-base sm:text-lg font-semibold text-[var(--text-color)]">
+                            Revenue
+                        </h2>
+                        <p className="text-sm sm:text-lg text-[var(--text-color)]">
                             Total Revenue:{' '}
                             <span className="font-semibold">{totalRevenue}</span>
                         </p>
@@ -112,7 +109,7 @@ export default function Revenue() {
                                     dataKey="month"
                                     axisLine={false}
                                     tickLine={false}
-                                    tick={{ fontSize: 12 }}
+                                    tick={{ fontSize: 12, fill: 'var(--text-color)' }}
                                 />
                                 <YAxis
                                     axisLine={false}
@@ -124,9 +121,15 @@ export default function Revenue() {
                                             maximumFractionDigits: 0,
                                         }).format(v)
                                     }
-                                    tick={{ fontSize: 12 }}
+                                    tick={{ fontSize: 12, fill: 'var(--text-color)' }}
                                 />
                                 <Tooltip
+                                    contentStyle={{
+                                        backgroundColor: 'var(--tooltip-bg)',
+                                        borderColor: 'var(--border-color)',
+                                        color: 'var(--text-color)',
+                                        fontSize: 12,
+                                    }}
                                     formatter={(value: number) =>
                                         new Intl.NumberFormat('en-US', {
                                             style: 'currency',
@@ -134,26 +137,24 @@ export default function Revenue() {
                                         }).format(value)
                                     }
                                 />
-                                <Bar dataKey="revenue" fill="#5b3df1" barSize={barSize}>
+                                <Bar dataKey="revenue" fill="var(--accent-color)" barSize={barSize}>
                                     <LabelList
                                         dataKey="revenue"
                                         position="top"
                                         formatter={(value: number) => `$${value.toFixed(2)}`}
-                                        style={{ fontSize: 10 }}
+                                        style={{ fontSize: 10, fill: 'var(--text-color)' }}
                                     />
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
 
-                    <div className="mt-4 text-xs sm:text-sm text-center opacity-80 text-[#0E253C]">
+                    <div className="mt-4 text-xs sm:text-sm text-center opacity-80 text-[var(--text-color)]">
                         • 2023
                     </div>
                 </div>
-            )}
-
-            {activeTab !== 'Revenue' && (
-                <p className="flex items-center justify-center text-gray-600 h-[300px] text-sm">
+            ) : (
+                <p className="flex items-center justify-center text-[var(--text-muted)] h-[300px] text-sm">
                     No data found
                 </p>
             )}

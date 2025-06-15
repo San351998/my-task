@@ -65,71 +65,71 @@ export default function RecentOrders() {
     ];
 
     return (
-        <div className=" bg-[#f6f8f9] mx-4 mt-6 border border-[#e7e9ec] rounded-[12px] shadow-sm">
-            <div className="py-3 px-4">
-                <h2 className="text-lg font-semibold text-[#0E253C]">Recent Orders</h2>
-            </div>
+    <div className="bg-[var(--background-section)] mx-4 mt-6 border border-[var(--border-color)] rounded-[12px] shadow-sm">
+      <div className="py-3 px-4">
+        <h2 className="text-lg font-semibold text-[var(--text-color)]">Recent Orders</h2>
+      </div>
 
-            <div className="w-full overflow-x-auto">
-                <table className="min-w-[768px] w-full table-auto text-left text-sm">
-                    <thead className="bg-white text-gray-500 border-y border-[#e7e9ec]">
-                        <tr>
-                            <th className="py-2 px-4 whitespace-nowrap">ORDER ID</th>
-                            <th className="py-2 px-4 whitespace-nowrap">PRODUCTS</th>
-                            <th className="py-2 px-4 whitespace-nowrap">CHANNEL</th>
-                            <th className="py-2 px-4 whitespace-nowrap">CUSTOMER</th>
-                            <th className="py-2 px-4 whitespace-nowrap">TOTAL</th>
-                            <th className="py-2 px-4 whitespace-nowrap">DELIVERY DATE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order, i) => (
-                            <tr key={i} className="border-b border-[#e7e9ec] text-[#0E253C]">
-                                <td className="py-3 px-4 whitespace-nowrap">{order.id}</td>
-                                <td className="py-3 px-4 whitespace-nowrap">
-                                    <div className="flex items-center gap-2 max-w-[160px] overflow-hidden text-ellipsis">
-                                        <span>{order.productQty}</span>
-                                        <Image
-                                            src={order.productImg}
-                                            alt={order.productName}
-                                            width={24}
-                                            height={24}
-                                            className="rounded-sm"
-                                        />
-                                        <span className="truncate">{order.productName}</span>
-                                    </div>
-                                </td>
-                                <td className="py-3 px-4 whitespace-nowrap">
-                                    <Image
-                                        src={order.channelImg}
-                                        alt={order.channelName}
-                                        width={45}
-                                        height={45}
-                                    />
-                                </td>
-                                <td className="py-3 px-4 whitespace-nowrap">
-                                    <div className="flex items-center gap-2">
-                                        <Image
-                                            src={order.customerImg}
-                                            alt={order.customerName}
-                                            width={24}
-                                            height={24}
-                                            className="rounded-full"
-                                        />
-                                        <span>{order.customerName}</span>
-                                    </div>
-                                </td>
-                                <td className="py-3 px-4 whitespace-nowrap">{order.total}</td>
-                                <td className="py-3 px-4 whitespace-nowrap">{order.delivery}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+      <div className="w-full overflow-x-auto">
+        <table className="min-w-[768px] w-full table-auto text-left text-sm">
+          <thead className="bg-[var(--card-bg)] text-[var(--text-secondary)] border-y border-[var(--border-color)]">
+            <tr>
+              <th className="py-2 px-4 whitespace-nowrap">ORDER ID</th>
+              <th className="py-2 px-4 whitespace-nowrap">PRODUCTS</th>
+              <th className="py-2 px-4 whitespace-nowrap">CHANNEL</th>
+              <th className="py-2 px-4 whitespace-nowrap">CUSTOMER</th>
+              <th className="py-2 px-4 whitespace-nowrap">TOTAL</th>
+              <th className="py-2 px-4 whitespace-nowrap">DELIVERY DATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, i) => (
+              <tr key={i} className="border-b border-[var(--border-color)] text-[var(--text-color)]">
+                <td className="py-3 px-4 whitespace-nowrap">{order.id}</td>
+                <td className="py-3 px-4 whitespace-nowrap">
+                  <div className="flex items-center gap-2 max-w-[160px] overflow-hidden text-ellipsis">
+                    <span>{order.productQty}</span>
+                    <Image
+                      src={order.productImg}
+                      alt={order.productName}
+                      width={24}
+                      height={24}
+                      className="rounded-sm"
+                    />
+                    <span className="truncate">{order.productName}</span>
+                  </div>
+                </td>
+                <td className="py-3 px-4 whitespace-nowrap">
+                  <Image
+                    src={order.channelImg}
+                    alt={order.channelName}
+                    width={45}
+                    height={45}
+                  />
+                </td>
+                <td className="py-3 px-4 whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={order.customerImg}
+                      alt={order.customerName}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
+                    <span>{order.customerName}</span>
+                  </div>
+                </td>
+                <td className="py-3 px-4 whitespace-nowrap">{order.total}</td>
+                <td className="py-3 px-4 whitespace-nowrap">{order.delivery}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-            <div className="text-center text-[#513CCE] text-sm mt-4 cursor-pointer hover:underline font-medium mb-4">
-                View 256 more orders →
-            </div>
-        </div>
-    );
+      <div className="text-center text-[var(--accent-color)] text-sm mt-4 cursor-pointer hover:underline font-medium mb-4">
+        View 256 more orders →
+      </div>
+    </div>
+  );
 }
