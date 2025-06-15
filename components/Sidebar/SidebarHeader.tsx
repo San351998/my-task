@@ -1,6 +1,6 @@
 export default function SidebarHeader() {
   return (
-    <div className="flex justify-between px-4 py-4 bg-white border border-[#e7e9ec] rounded-xl">
+    <div className="w-full flex justify-between px-4 py-4 bg-white border border-[#e7e9ec] rounded-xl">
       <div className="flex items-center space-x-3">
         <div className="relative">
           <div className="w-12 h-12 rounded-full bg-[#513CCE] text-white font-semibold flex items-center justify-center text-lg overflow-hidden">

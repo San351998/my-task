@@ -4,11 +4,11 @@ const actions = ['Email', 'Call', 'Message', 'Calendar'];
 
 export default function SidebarActions() {
   return (
-    <div className="bg-white flex justify-around py-4 rounded-xl border border-gray-200">
+    <div className="w-full bg-white flex justify-around py-5 lg:py-4 rounded-xl border border-gray-200">
       {actions.map((action, index) => (
         <div
           key={action}
-          className={`flex flex-col items-center text-xs text-[#0E253C] cursor-pointer hover:text-[#513CCE] px-4 ${index !== 0 ? 'border-l border-[#e7e9ec]' : ''
+          className={`flex flex-col items-center text-xs text-[#0E253C] cursor-pointer hover:text-[#513CCE] px-4 sm:px-8 lg:px-4 ${index !== 0 ? 'border-l border-[#e7e9ec]' : ''
             }`}
         >
           <Image

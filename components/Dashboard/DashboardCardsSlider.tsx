@@ -56,59 +56,37 @@ export default function DashboardCardsSlider() {
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1280, settings: { slidesToShow: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { dots:true, slidesToShow: 1 } },
     ],
   };
 
   return (
-    <div className="bg-white max-w-6xl py-6 px-2">
+    <div className="bg-white pb-6 sm:pb-6 sm:py-6 px-2 max-w-6xl overflow-hidden mb-5 sm:mb-0">
       <Slider {...sliderSettings}>
-      {sliderItems.map((item, index) => (
-        <div key={index} className="px-2 w-[20%] ">
-          <div className="bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
-            {/* Top Section */}
-            <div className="flex items-center space-x-4  p-4">
-              <div className=" flex items-center justify-center ">
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={54}
-                  height={54}
-                  className="object-contain"
-                />
+        {sliderItems.map((item, index) => (
+          <div key={index} className="px-2">
+            <div className="bg-[#f6f8f9] rounded-2xl shadow-sm h-full border border-[#e7e9ec]">
+              <div className="flex items-center space-x-4 p-4">
+                <div className="flex items-center justify-center">
+                  <Image src={item.icon} alt={item.title} width={54} height={54} />
+                </div>
+                <div>
+                  <p className="text-sm text-[#0E253C] opacity-80">{item.title}</p>
+                  <p className="text-[22px] font-bold text-[#0E253C]">{item.value}</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-[#0E253C] opacity-80">{item.title}</p>
-                <p className="text-[22px] font-bold text-[#0E253C]">{item.value}</p>
+              <div className="bg-white flex justify-between items-center border-t border-[#e7e9ec] px-4 py-3 rounded-b-[12px]">
+                <div className="flex items-center gap-1">
+                  <Image src={item.trendIcon} alt="trend" width={12} height={12} />
+                  <span className={`text-sm font-medium ${item.color}`}>{item.percent}</span>
+                </div>
+                <span className="text-xs text-[#0E253C] opacity-80">From The Last Month</span>
               </div>
-            </div>
-
-            {/* Bottom Section */}
-            <div className="bg-white flex justify-between items-center border-t border-[#e7e9ec] px-4 py-3 rounded-b-[12px]">
-              <div className="flex items-center gap-1">
-                <Image
-                  src={item.trendIcon}
-                  alt="trend"
-                  width={12}
-                  height={12}
-                  className="object-contain"
-                />
-                <span className={`text-sm font-medium ${item.color}`}>
-                  {item.percent}
-                </span>
-              </div>
-              <span className="text-xs text-[#0E253C] opacity-80">From The Last Month</span>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       </Slider>
     </div>
   );

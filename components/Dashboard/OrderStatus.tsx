@@ -42,7 +42,7 @@ export default function OrderStatus() {
       <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#e7e9ec]">
         <h2 className="text-lg font-semibold text-[#0E253C]">Order Status</h2>
 
-        <div className="flex gap-4 w-full md:w-auto flex-col md:flex-row">
+        <div className="flex gap-4 w-full md:w-auto flex-row">
           <DropdownSelect
             options={contactOwners}
             selected={selected}
@@ -54,8 +54,8 @@ export default function OrderStatus() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="grid grid-cols-2 gap-0 rounded-xl overflow-hidden flex-1">
+      <div className="flex flex-col md:flex-row sm:gap-6">
+        <div className="w-full md:w-[60%] grid grid-cols-2 gap-0 rounded-xl overflow-hidden flex-1">
           <StatusBox icon="/images/tabs/dashboard/order-status/all.svg" label="All" value={total} index={0} />
           {data.map((item, index) => (
             <StatusBox key={item.name} icon={item.icon} label={item.name} value={item.value} index={index + 1} />
@@ -63,15 +63,15 @@ export default function OrderStatus() {
         </div>
 
         {/* Pie Chart */}
-        <div className="w-full md:w-1/2 relative">
+        <div className="w-full md:w-[40%] relative  h-[255px] sm:h-auto">
           <ResponsiveContainer>
             <PieChart>
               <Pie
                 data={data}
                 cx="50%"
                 cy="50%"
-                innerRadius={85}
-                outerRadius={125}
+                innerRadius={65}
+                outerRadius={105}
                 fill="#8884d8"
                 dataKey="value"
                 stroke="none"
@@ -120,25 +120,32 @@ const StatusBox = ({
   value,
   index,
 }: {
-  icon: string
-  label: string
-  value: number
-  index: number
+  icon: string;
+  label: string;
+  value: number;
+  index: number;
 }) => {
-  const isRightColumn = (index + 1) % 2 === 0
+  const isRightColumn = (index + 1) % 2 === 0;
+  const noBorder = index === 4 || index === 5;
+
   return (
     <div
-      className={`flex items-center space-x-3 px-6 py-10 border-b border-r border-gray-200
-        ${isRightColumn ? 'border-r-0' : ''}
+      className={`flex px-4 sm:px-6 xl:px-4 2xl:px-6 py-4 sm:py-10 
+        border-gray-200 
+        ${!noBorder ? 'border-b' : ''} 
+        ${!isRightColumn ? 'border-r' : ''}
       `}
     >
-      <div className="max-w-6 w-6 max-h-6 h-6 relative">
-        <Image src={icon} alt={label} width={24} height={24} />
+      <div className="w-2/5 flex items-start justify-start">
+        <div className="w-6 h-6 relative">
+          <Image src={icon} alt={label} width={24} height={24} />
+        </div>
       </div>
-      <div>
+
+      <div className="w-3/5">
         <div className="text-sm text-gray-500">{label}</div>
         <div className="text-[22px] font-semibold">{value}</div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     BarChart,
     Bar,
@@ -45,17 +45,36 @@ export default function Revenue() {
 
     const [startDate, setStartDate] = useState<Date | null>(new Date());
 
+    const [barSize, setBarSize] = useState(40);
+
+    useEffect(() => {
+        const updateBarSize = () => {
+            const width = window.innerWidth;
+            if (width < 640) {
+                setBarSize(30);
+            } else {
+                setBarSize(60); 
+            }
+        };
+
+        updateBarSize(); 
+        window.addEventListener('resize', updateBarSize);
+
+        return () => window.removeEventListener('resize', updateBarSize);
+    }, []);
+
     return (
         <div className="bg-[#f6f8f9] mx-4 mt-6 border border-[#e7e9ec] rounded-[12px] shadow-sm text-[#0E253C] mb-4">
-            <div className="p-4 flex justify-between items-center border-b border-[#e7e9ec]">
-                <div className="bg-gray-100 rounded-[12px] w-fit border border-[#e7e9ec] flex">
+            <div className="p-4 flex flex-col md:flex-row gap-3 justify-between items-center border-b border-[#e7e9ec]">
+                <div className="bg-gray-100 rounded-[12px] w-full md:w-fit border border-[#e7e9ec] flex overflow-x-auto">
                     {tabs.map((tab) => (
                         <button
                             key={tab}
-                            className={`px-4 py-2 rounded-[12px] font-medium cursor-pointer ${activeTab === tab
-                                ? 'bg-white shadow text-[#0E253C]'
-                                : 'text-gray-500'
-                                }`}
+                            className={`px-4 py-2 whitespace-nowrap rounded-[12px] font-medium cursor-pointer ${
+                                activeTab === tab
+                                    ? 'bg-white shadow text-[#0E253C]'
+                                    : 'text-gray-500'
+                            }`}
                             onClick={() => setActiveTab(tab)}
                         >
                             {tab}
@@ -63,7 +82,7 @@ export default function Revenue() {
                     ))}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 w-full md:w-auto">
                     <DropdownSelect
                         options={contactOwners}
                         selected={selected}
@@ -74,20 +93,27 @@ export default function Revenue() {
             </div>
 
             {activeTab === 'Revenue' && (
-                <div className="px-6 pb-6">
-                    <div className="flex justify-between items-center py-4">
-                        <h2 className="text-lg font-semibold text-[#0E253C]">Revenue</h2>
-
-                        <p className="text-lg text-[#0E253C]">
+                <div className="px-4 sm:px-6 pb-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 gap-2">
+                        <h2 className="text-base sm:text-lg font-semibold text-[#0E253C]">Revenue</h2>
+                        <p className="text-sm sm:text-lg text-[#0E253C]">
                             Total Revenue:{' '}
-                            <span className="text-lg font-semibold text-[#0E253C]">{totalRevenue}</span>
+                            <span className="font-semibold">{totalRevenue}</span>
                         </p>
                     </div>
 
-                    <div className="w-full h-[320px]">
+                    <div className="w-full h-[300px] sm:h-[320px]">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 20 }}>
-                                <XAxis dataKey="month" axisLine={false} tickLine={false} />
+                            <BarChart
+                                data={data}
+                                margin={{ top: 10, right: 0, left: 0, bottom: 20 }}
+                            >
+                                <XAxis
+                                    dataKey="month"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tick={{ fontSize: 12 }}
+                                />
                                 <YAxis
                                     axisLine={false}
                                     tickLine={false}
@@ -98,6 +124,7 @@ export default function Revenue() {
                                             maximumFractionDigits: 0,
                                         }).format(v)
                                     }
+                                    tick={{ fontSize: 12 }}
                                 />
                                 <Tooltip
                                     formatter={(value: number) =>
@@ -107,28 +134,29 @@ export default function Revenue() {
                                         }).format(value)
                                     }
                                 />
-                                <Bar dataKey="revenue" fill="#5b3df1">
+                                <Bar dataKey="revenue" fill="#5b3df1" barSize={barSize}>
                                     <LabelList
                                         dataKey="revenue"
                                         position="top"
                                         formatter={(value: number) => `$${value.toFixed(2)}`}
+                                        style={{ fontSize: 10 }}
                                     />
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
 
-                    <div className="mt-4 text-sm opacity-80 text-[#0E253C] pl-1 text-center">• 2023</div>
+                    <div className="mt-4 text-xs sm:text-sm text-center opacity-80 text-[#0E253C]">
+                        • 2023
+                    </div>
                 </div>
             )}
 
             {activeTab !== 'Revenue' && (
-                <p className='flex items-center justify-center text-gray-600 h-[300px]'>
-                    No Content Found
+                <p className="flex items-center justify-center text-gray-600 h-[300px] text-sm">
+                    No data found
                 </p>
             )}
         </div>
-
-
     );
 }

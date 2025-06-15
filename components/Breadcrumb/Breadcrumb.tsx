@@ -13,7 +13,7 @@ export default function Breadcrumb() {
       .join(" ");
 
   return (
-    <div className="bg-white text-md text-[#0E253C] px-4 py-5 border-b border-[#e7e9ec]">
+    <div className="w-full bg-white text-md text-[#0E253C] px-4 py-5 border-b border-[#e7e9ec]">
       {pathSegments.map((segment, index) => {
         const href = "/" + pathSegments.slice(0, index + 1).join("/");
         const isLast = index === pathSegments.length - 1;

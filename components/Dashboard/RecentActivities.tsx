@@ -20,18 +20,18 @@ export default function RecentActivities() {
     }) => (
         <div className="flex gap-3 mt-3">
             <div
-                className={`w-6 h-6 flex items-center justify-center rounded-full ${iconBg}`}
+                className={`min-w-6 min-h-6 w-6 h-6 flex items-center justify-center rounded-full ${iconBg}`}
             >
-                <Image src={iconSrc} alt="icon" width={16} height={16} className="w-3 h-3 object-contain" />
+                <Image src={iconSrc} alt="icon" width={16} height={16} className="min-w-3 min-h-3 w-3 h-3 object-contain" />
             </div>
             <div>
                 <div className="text-sm text-gray-800">{content}</div>
                 {replies && (
-                    <div className="ml-6 mt-1 space-y-1">
+                    <div className="ml-2 sm:ml-6 mt-1 space-y-1">
                         {replies.map((reply, idx) => (
-                            <div key={idx} className="flex gap-2 text-sm text-gray-500">
+                            <div key={idx} className="sm:flex gap-2 text-sm text-gray-500">
                                 <div
-                                    className={`w-6 h-6 flex items-center justify-center rounded-full bg-gray-200`}
+                                    className={`min-w-6 min-h-6 w-6 h-6 flex items-center justify-center rounded-full bg-gray-200`}
                                 >
                                     <ArrowUturnLeftIcon className="w-3 h-3" />
                                 </div>
@@ -133,8 +133,8 @@ export default function RecentActivities() {
     )
 
     return (
-        <div className="full bg-[#f6f8f9] rounded-[12px] shadow-sm h-full border border-[#e7e9ec]">
-            <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#e7e9ec]">
+        <div className="full bg-[#f6f8f9] rounded-[12px] shadow-sm h-full border border-[#e7e9ec] pb-4 sm:pb-2">
+            <div className="py-3 px-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-2 sm:gap-4 border-b border-[#e7e9ec]">
                 <h2 className="text-lg font-semibold text-[#0E253C]">Recent Activities</h2>
                 <div className="bg-gray-100 rounded-[12px] w-fit border border-[#e7e9ec]">
                     <button
