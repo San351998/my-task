@@ -142,7 +142,6 @@ export default function BusinessDeatils() {
             </div>
             <hr className='text-[#e7e9ec]' />
 
-            {/* phonee number section */}
             <div className="mt-3 space-y-2 bg-white">
                 <div className="flex justify-between items-center mb-2">
                     <p className="text-xs font-medium text-[#0E253C]">
@@ -225,7 +224,6 @@ export default function BusinessDeatils() {
             </div>
             <hr className='text-[#e7e9ec]' />
 
-            {/* contact owner */}
             <div>
                 <label className="block text-xs font-medium text-[#0E253C] mb-2">Contact Owner</label>
                 <div className="relative w-full">

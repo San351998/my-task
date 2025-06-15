@@ -31,8 +31,6 @@ export default function CompanyPage() {
         </div>
       </div>
 
-
-      {/* Tab Content */}
       <div className="w-full bg-white pt-4 lg:pt-6 border border-[#e7e9ec] rounded-tr-[12px] rounded-b-[12px] h-[calc(100vh-190px)] overflow-y-auto">
         {activeTab === "Dashboard" && (
           <>
